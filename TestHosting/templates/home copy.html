@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UpJobYojana - Your Gateway to Jobs in Uttar Pradesh</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='logo.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .loc {
+            position: relative;
+            z-index: 1;
+        }
+
+        .loc::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            /* background-image: url("{{ url_for('static', filename='locationn.jpg') }}"); */
+            background-size: cover;
+            background-position: center;
+            /* filter: blur(1px); */
+            opacity: 0.7;
+            z-index: -1; 
+            animation-name:bg-animation;
+            animation-duration: 6s;
+            animation-iteration-count: infinite;
+        }
+
+
+        /* thoda animation hojaye */        
+
+
+        
+    
+    @keyframes bg-animation
+    {
+        0%{
+            background-color: #2a06ff;
+        }
+
+        25%{
+            background-color: crimson;
+        }
+        50%{
+            background-color: rgb(220, 163, 20);
+        }
+        75%{
+            background-color: crimson;
+        }
+        100%{
+            background-color: rgb(63, 20, 220);
+        }
+        
+    }
+
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-8 py-2 flex justify-between items-center">
+            <div class="text-3xl font-bold text-blue-600 px-0 py-0">
+                <img class="logo" src="{{ url_for('static', filename='logo.png') }}" alt="UPJOBYOJANA">
+            </div>
+            <div class="hidden md:flex space-x-12">
+                <a href="#" class="text-gray-600 hover:text-blue-600">Home</a>
+                <a href="#" class="text-gray-600 hover:text-blue-600">About</a>
+                <a href="#" class="text-gray-600 hover:text-blue-600">Jobs</a>
+                <a href="#" class="text-gray-600 hover:text-blue-600">Contact</a>
+            </div>
+            <div class="hidden md:flex space-x-6 flex items-center">
+                <a href="/login" class="text-gray-600 hover:text-blue-600">Login</a>
+                <a href="/signup" class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Sign Up</a>
+            </div>
+            <div class="md:hidden">
+                <!-- Mobile Menu Button -->
+                <button class="focus:outline-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+<!-- Hero Section -->
+<section class="bg-gray-100 py-20 loc relative">
+    <div class="container mx-auto px-4 text-center">
+        <h1 class="text-5xl font-extrabold text-white">Get Hired in Uttar Pradesh</h1>
+        <p class="mt-4 text-lg">UpJobYojana connects job seekers with employers across Uttar Pradesh, making it easy to find and apply for jobs.</p>
+        <div class="mt-8 flex gap-3 justify-center flex-wrap">
+            <a href="#" class="px-11 py-3 bg-white text-blue-600 rounded-lg hover:bg-gray-100">Know More</a>
+            <a href="#" class="px-12 py-3 bg-blue-600 text-white rounded-lg hover:bg-gray-400">Find a Job</a>
+        </div>
+    </div>
+</section>
+
+
+    <!-- Why UpJobYojana Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-gray-800">Why Choose UpJobYojana?</h2>
+            <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="bg-gray-100 p-8 rounded-lg shadow-lg">
+                    <div class="flex align-center justify-center pb-4">
+                        <i class="text-5xl text-blue-600 ri-building-4-fill"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800">Wide Range of Job Listings</h3>
+                    <p class="mt-4 text-gray-600">Find jobs across different sectors in Uttar Pradesh, from IT to various other positions.</p>
+                </div>
+                <!-- Feature 2 -->
+                <div class="bg-gray-100 p-8 rounded-lg shadow-lg">
+                    <div class="flex align-center justify-center pb-4">
+                        <i class="text-5xl text-blue-600 ri-stack-fill"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800">variety of jobs</h3>
+                    <p class="mt-4 text-gray-600">Get the Job in which tou are interested, we are having more then 500 Job posts.</p>
+                </div>
+                <!-- Feature 3 -->
+                <div class="bg-gray-100 p-8 rounded-lg shadow-lg">
+                    <div class="flex align-center justify-center pb-4">
+                        <i class="text-5xl text-blue-600 ri-ball-pen-fill"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800">Easy Application Process</h3>
+                    <p class="mt-4 text-gray-600">Our platform simplifies the job application process for candidates.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="bg-gray-100 py-16">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold text-gray-800">What People Are Saying</h2>
+            <div class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- t1 -->
+                <div class="bg-white p-8 rounded-lg shadow-lg">
+                    <p class="text-gray-600"><sup><i class="ri-double-quotes-l text-xl"></i></sup> UpJobYojana helped me land my dream job in Uttar Pradesh! The platform is user-friendly and connects you directly with employers. <sup><i class="ri-double-quotes-r text-xl"></i></sup></p>
+                    <div class="mt-4">
+                        <p class="font-bold text-gray-800">Anjali Singh <i class="ri-verified-badge-fill"></i></p>
+                        <p class="text-gray-500">Marketing Manager</p>
+                    </div>
+                </div>
+                <!-- t2 -->
+                <div class="bg-white p-8 rounded-lg shadow-lg">
+                    <p class="text-gray-600"><sup><i class="ri-double-quotes-l text-xl"></i></sup> I was able to find my IT job which is very near to my Home, so i need not to bother a lot for  traveling for my job. <sup><i class="ri-double-quotes-r text-xl"></i></sup></p>
+                    <div class="mt-4">
+                        <p class="font-bold text-gray-800">Rohit Kumar <i class="ri-verified-badge-fill"></i></p>
+                        <p class="text-gray-500">IT Engineer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="bg-blue-600 py-16">
+        <div class="container mx-auto px-4 text-center text-white">
+            <h2 class="text-4xl font-bold">Ready to get started?</h2>
+            <p class="mt-4 text-lg">Join UpJobYojana today to find or post jobs in Uttar Pradesh with ease!</p>
+            <div class="mt-8 flex align-center justify-center">
+                <a href="#" class="px-8 py-3 font-bold bg-white text-blue-600 rounded-lg hover:bg-gray-100">Join Now!</a>
+                <!-- <a href="#" class="ml-4 px-8 py-3 bg-gray-300 text-white rounded-lg hover:bg-gray-400">Login</a> -->
+            </div>
+        </div>
+    </section>
+
+
+    <footer class="bg-gray-800 py-8">
+        <div class="container mx-auto px-4 text-center text-white">
+            <p>&copy; 2024 UpJobYojana. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

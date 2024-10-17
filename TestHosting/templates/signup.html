@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Job Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='logo.css') }}">
+    <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
+    rel="stylesheet"
+/>
+    <style>
+
+        .top_nav{
+            background-color: rgb(35 55 205);
+        }
+      
+      .login_page_img{
+          background: radial-gradient(circle, #202047 0, #020917 100%);
+          overflow: hidden;
+          transition: all ease 0.3s;
+          user-select: none;
+      }
+
+        .background-dots {
+            background-image: radial-gradient(#e0e0e0 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+
+        .btn{
+            box-shadow:2.6px 2.6px 1.3px #464646e3;
+        }
+
+        .logoo{
+            width: 300px;
+        }
+
+        #signupForm{
+            padding:0 125px;
+        }
+
+
+        @media only screen and (max-width: 799px) {
+                #signupForm{
+                    padding:0 20px;
+                }
+
+                .singup-cont{
+                    margin-top: 80px;
+                    padding: 20px;
+                }
+            }
+        
+    
+    </style>
+</head>
+
+<body class="flex h-screen">
+    <div class="top_nav drop-shadow-md w-full h-[70px] fixed flex shadow-lg align-center justify-center md:hidden">
+        <div>        <button class="lg:hidden text-white focus:outline-none" onclick="toggleSidebar()"></button>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+            </svg></div>
+        <img class="logoo" src="{{ url_for('static', filename='logoo.png') }}" alt="">   
+    </div>
+
+    <div class="hidden md:flex flex-col w-[60%] bg-blue-900 items-center justify-center login_page_img">
+        <img src="https://app.svgator.com/assets/svgator.webapp/log-in-girl.svg" alt="">   
+    </div>
+    <!-- right -->
+    <div class="singup-cont h-screen md: background-dots flex-1 bg-white rounded-lg shadow-lg flex flex-col justify-center borrder-2 border-gray-300">
+        <h2 class="text-[170%] md:text-4xl font-bold mb-2 text-center text-gray-800">Signup Your Account!</h2>
+        <p class="text-gray-600 mb-6 text-center">Please Create Your Account</p>
+
+        <p class="text-red-500 mb-6 text-center text-lg">{{ message }}</p>
+        <div class="">
+            <form id="signupForm" method="POST" class="hidden-form">
+                <div class="mb-4">
+                    <label class="block text-gray-600 font-semibold mb-2" for="name">Name</label>
+                    <div class="relative">
+                        <i class="ri-user-line absolute top-[0.6rem] left-3 text-gray-400"></i>
+                        <input class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" type="text" id="name" name="name" placeholder="Enter Your Name" required>
+                    </div>
+                </div>
+                
+                <div class="mb-4">
+                    <label class="block text-gray-600 font-semibold mb-2" for="email">Email</label>
+                    <div class="relative">
+                        <i class="ri-mail-line absolute top-[0.6rem] left-3 text-gray-400"></i>
+                        <input class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" type="email" id="email" name="email" placeholder="Enter your email" required>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-600 font-semibold mb-2" for="password">Password</label>
+                    <div class="relative">
+                        <i class="ri-lock-2-line absolute top-[0.6rem] left-3 text-gray-400"></i>
+                        <input class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" type="password" id="password" name="password" placeholder="Create a password" required>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-600 font-semibold mb-2" for="confirm_password">Confirm Password</label>
+                    <div class="relative">
+                        <i class="ri-lock-2-line absolute top-[0.6rem] left-3 text-gray-400"></i>
+                        <input class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" type="password" id="password" name="confirm_password" placeholder="Confirm password" required>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-600 font-semibold mb-2" for="contact">Contact Number</label>
+                    <div class="relative">
+                        <i class="ri-phone-line absolute top-[0.6rem] left-3 text-gray-400"></i>
+                        <input class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" type="tel" id="contact" name="contact" placeholder="Enter your contact number" required>
+                    </div>
+                </div>
+                <button class="w-full mt-2 bg-blue-600 shadow-lg shadow-blue-500/50 text-white font-semibold py-3 rounded-lg hover:bg-blue-700 focus:outline-none transition duration-200 " type="submit">
+                    Sign Up
+                </button>
+            </form>
+            <p class="mt-4 text-center text-sm text-gray-600">
+                Already have an account? 
+                <a class="text-blue-500 hover:underline" href="/login">Log in</a>
+            </p>
+        </div>
+
+    </div>
+</body>
+</html>

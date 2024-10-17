@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Admin Dashboard{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='logo.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet"/>
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+
+        #sidebar {
+            position: fixed;
+            top: 59px;
+            left: 0;
+            height:100vh;
+            width: 250px;
+            overflow-y: auto;
+            z-index: 450;
+        }
+
+        #main-content {
+            padding-top: 68px;
+        }
+
+        .logout-btn{
+            display: none;
+        }
+
+        .verified_job{
+            display: flex;
+        }
+
+        .support_btn{  
+            padding: 0.5rem 1rem;
+       }
+        @media only screen and (max-width: 799px) {
+
+            #main-content{
+                padding: 14px;
+                padding-top: 68px;
+            }
+            #sidebar {
+                top: 45px;
+                width: 100%;
+                height: auto;
+                position: absolute;
+            }
+            .filter_ul{
+                gap: .7rem;
+            }
+
+            .logout-btn{
+                display: block;
+            }
+            .top_nav_logout{
+                    display: none;
+            }
+
+            .verified_job{
+                display: none;
+            }
+            .top_nav_menu_btn{
+                width: 150px;
+            }
+
+            .support_btn{
+                width: 79px;
+                height: fit-content;
+                font-size: 14px;
+                padding: 7px;
+            }
+
+        }
+
+
+
+        /* read more functionly */
+
+        .post_description .short_description,
+        .post_description .full_description {
+            display: none;
+        }
+
+        .post_description .read-more,
+        .post_description .read-less {
+            color:#2a06ff;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .post_description.expanded .full_description {
+            display: inline;
+        }
+
+        .post_description.expanded .read-more {
+            display: none;
+        }
+
+        .post_description:not(.expanded) .short_description {
+            display: inline;
+        }
+
+        .post_description:not(.expanded) .read-less {
+            display: none;
+        }
+
+
+</style>
+</head>
+
+<body class="bg-gray-100">
+
+    <nav class="bg-blue-500 text-white py-2 shadow-lg w-full fixed top-0 h-fit z-[500]">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <div class="flex items-center top_nav_menu_btn"> 
+                <!-- Logo -->
+                <button class="lg:hidden text-white focus:outline-none" onclick="toggleSidebar()">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                </button>
+                <img class="logo" src="{{ url_for('static', filename='logoo.png') }}" alt="UPJOBYOJANA">
+            </div>
+            <div>
+                <span class="hidden md:inline-block mr-6 text-lg font-medium">Hello, {{name}}</span>
+                <button class="support_btn bg-white text-blue-500 font-semibold  rounded-lg hover:bg-gray-200 transition duration-200"><a href="http://wa.me/+916391330353">Support ?</a></button>
+                <button class="top_nav_logout bg-white text-red-800 font-semibold py-2 px-4 rounded-lg hover:bg-gray-200 transition duration-200"><a href="/logout">Log out</a></button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+     <div class="sidebarContainer">
+         <div id="sidebar" class="transition duration-200 bg-gray-800 text-white hidden lg:block">
+             <div class="py-6 px-4">
+                 <ul class="space-y-4">
+                     <li>
+                         <a href="#" class="block text-lg font-semibold p-3 rounded-lg hover:bg-blue-700 transition duration-200"><i class="ri-add-box-fill"></i>  Create New</a>
+                     </li>
+                     <li>
+                         <a href="#" class="block text-lg font-semibold bg-blue-600 p-3 rounded-lg hover:bg-blue-700 transition duration-200"><i class="ri-stack-fill"></i> All Jobs</a>
+                     </li>
+                     <li>
+                         <a href="#" class="block text-lg font-semibold bg-gray-700 p-3 rounded-lg hover:bg-blue-600 transition duration-200"><i class="ri-bookmark-line post_bookmark"]></i> Applied Candidates</a>
+                     </li>
+                     <li>
+                         <a href="#" class="block text-lg font-semibold bg-gray-700 p-3 rounded-lg hover:bg-blue-600 transition duration-200"><i class="ri-contract-fill"></i>Deleted Jobs</a>
+                     </li>
+                     <li>
+                         <a href="#" class="block text-lg font-semibold bg-gray-700 p-3 rounded-lg hover:bg-blue-600 transition duration-200"><i class="ri-settings-fill"></i> Settings</a>
+                     </li>
+                     <li class="text-red-400 logout-btn">
+                         <a href="#" class="block text-lg font-semibold bg-gray-700 p-3 rounded-lg hover:bg-blue-600 transition duration-200"><i class="ri-logout-circle-r-line"></i> Logout</a>
+                     </li>
+                 </ul>
+             </div>
+         </div>
+     </div>
+
+     <div id="main-content" class="lg:ml-[250px] bg-white p-8 mt-[25px]  h-fit">
+        {% block content %}{% endblock %}
+     </div>
+
+    <script>
+        function toggleSidebar() {
+            var sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('hidden');
+        }
+
+    </script>
+
+</body>
+
+</html>

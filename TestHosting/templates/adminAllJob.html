@@ -1,0 +1,27 @@
+{% extends 'AdminBaseDashboard.html' %}
+{% block content %}
+
+
+<main class="flex flex-col justify-center items-center h-full">
+    <h1 class="text-sm text-gray-500 mb-2">No Jobs Has been Created yet!</h1>
+    <a  href="/CreateJob" class="createJobsBtn bg-indigo-600 text-white px-16 py-4 font-semibold text-xl rounded-lg hover:bg-indigo-700 cursor-pointer transition duration-200 mb-4 sm:mb-0"><i class="ri-add-circle-line"></i> Cereate A Job</a>
+</main>
+
+<head>
+    <!-- Add Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&family=Roboto:wght@400&display=swap" rel="stylesheet">
+</head>
+
+<div class="space-y-6 all_job_cont bg-blue-50">
+    <div class=" p-8 rounded-xl shadow-lg hover:shadow-xl transition duration-300">
+        <div class="postTime text-xs text-gray-500">4 hours Ago</div>
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-3xl font-bold text-gray-900">IT Computer Person for the post of Lorem</h2>
+            <!-- <i class="ri-bookmark-line post_bookmark text-3xl text-blue-600 hover:text-blue-800 cursor-pointer" onclick="toggleBookmark(this)"></i> -->
+        </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

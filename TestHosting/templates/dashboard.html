@@ -1,0 +1,165 @@
+{% extends 'BaseDashboard.html' %}
+{% block content %}
+
+        <div class="space-y-6 all_job_cont" id="jobContainer">
+            <!-- <div class="bg-gray-100 p-6 rounded-lg shadow-md">
+                <div class="postTime">4 hours Ago</div>
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800">IT Computer Person for the post of the lorem</h2>
+                    <i class="ri-bookmark-line post_bookmark text-2xl pt-[3px]" onclick="toggleBookmark(this)"></i>
+                </div>
+                <div class="post_description">
+                    <p class="text-gray-600 mb-4 main_description">We are looking for a talented Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia perferendis, voluptate vero quaerat eos quisquam facilis! Tenetur iusto, deserunt perspiciatis, exercitationem velit illo in vero unde dolorem nihil quibusdam veniam.lor sit amet consectetur adipisicing elit. Iure suscipit quaerat cum consequatur ex quibusdam nihil deserunt hic, nesciunt porro provident minus expedita doloribus tenetur commodi veniam? Atque, soluta at.  and delivering modern web applications Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque delectus recusandae voluptas pariatur aliquid, quisquam harum autem, fugit sed esse sequi, mollitia magnam quasi nobis eum facere quo unde? Earum? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Alias vel animi fugiat commodi soluta ipsam voluptatibus et maiores doloremque sit fugit porro error necessitatibus, saepe numquam amet illo voluptatum! Perspiciatis.</p>
+                    
+                    <div class="key_responsibilities">
+                        <h3 class="text-xl font-bold text-black-100">Key Responsibilities</h3>
+                       <div class="para_responsibilities">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus, quo ipsa quas debitis ullam mollitia aliquid eum ducimus, quod at aliquam ratione tenetur modi iste. Deleniti recusandae modi incidunt mollitia.</div>
+                    </div>
+                    <div class="key_responsibilities">
+                        <h3 class="text-xl font-bold text-black-100">Required Skills</h3>
+                       <div class="para_responsibilities">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus, quo ipsa quas debitis ullam mollitia aliquid eum ducimus, quod at aliquam ratione tenetur modi iste. Deleniti recusandae modi incidunt mollitia.</div>
+                    </div>
+                    <div class="key_responsibilities">
+                        <h3 class="text-xl font-bold text-black-100">Payment</h3>
+                       <div class="para_responsibilities">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus, quo ipsa quas debitis ullam mollitia aliquid eum ducimus, quod at aliquam ratione tenetur modi iste. Deleniti recusandae modi incidunt mollitia.</div>
+                    </div>
+
+
+                </div>
+                <div class="flex flex-col sm:flex-row justify-between items-center text-gray-700">
+                    <div class="flex gap-8 mb-4  mt-4">
+                        <div class="clint_location text-blue-600 w-[150px]  font-semibold bg-blue-200 rounded-lg p-[2px] px-4"><i class="ri-money-rupee-circle-line icon_hai"></i> 5000/month</div>
+                        <div class="verified_job">
+                            <i class="ri-verified-badge-fill text-gray-600"></i><p class="verified_yes_no">Verified Job</p>
+                        </div>
+                        <div class="clint_location"><i class="ri-map-pin-line icon_hai"></i>Sultanpur</div>
+                        <div class="clint_location"><b>PIN: </b> 228801</div>
+               
+                     </div>
+                    <a href="" class="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition duration-200 mb-4 sm:mb-0">Apply Now <i class="ri-arrow-right-up-line"></i></a>                
+                </div> -->
+            </div>
+
+
+
+    <script>   
+    const fetchJobs = async () => {
+    try {
+        const response = await fetch("http://127.0.0.1:6969/api/jobs")
+        if (!response.ok) {
+            throw new Error('Network response is not okay!')
+        }
+        const data = await response.json()
+        let jobs = []
+
+        jobs = data.jobs
+        renderJobs(jobs)
+    }
+    catch (error) {
+        console.log('Fetch error:', error)
+        return null;
+    }
+}
+fetchJobs();
+
+async function renderJobs(jobs) {
+    const jobContainer = document.getElementById("jobContainer");
+    jobContainer.innerHTML = ''; // Clear the container before rendering new jobs
+    jobs.forEach((job) => {
+        const jobHTML = `
+            <div class="bg-gray-100 p-6 rounded-lg shadow-md">
+                <div class="postTime">${job.created_at}</div>
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800">${job.designation}</h2>
+                    <i class="ri-bookmark-line post_bookmark text-2xl pt-[3px]" onclick="toggleBookmark(this)"></i>
+                </div>
+                <div class="post_description">
+                    <p class="text-gray-600 mb-4 main_description">${job.description}</p>
+                    
+                    <div class="key_responsibilities">
+                        <h3 class="text-xl font-bold text-black-100">Key Responsibilities</h3>
+                        <div class="para_responsibilities">${job.responsibilities}</div>
+                    </div>
+                    <div class="key_responsibilities">
+                        <h3 class="text-xl font-bold text-black-100">Required Skills</h3>
+                        <div class="para_responsibilities">${job.skills}</div>
+                    </div>
+                    <div class="key_responsibilities">
+                        <h3 class="text-xl font-bold text-black-100">Payment</h3>
+                        <div class="para_responsibilities">${job.payment}</div>
+                    </div>
+                </div>
+                <div class="flex flex-col sm:flex-row justify-between items-center text-gray-700">
+                    <div class="flex gap-8 mb-4 mt-4">
+                        <div class="clint_location text-blue-600 w-[150px] font-semibold bg-blue-200 rounded-lg p-[2px] px-4">
+                            <i class="ri-money-rupee-circle-line icon_hai"></i> ${job.payment}
+                        </div>
+                        <div class="verified_job">
+                            <i class="ri-verified-badge-fill text-gray-600"></i>
+                            <p class="verified_yes_no">${job.verified ? "Verified Job" : "Not Verified"}</p>
+                        </div>
+                        <div class="clint_location"><i class="ri-map-pin-line icon_hai"></i>${job.location}</div>
+                        <div class="clint_location"><b>PIN: </b> ${job.pin}</div>
+                    </div>
+                    <a href="dashboard/apply/${job.job_id}" class="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition duration-200 mb-4 sm:mb-0">Apply Now <i class="ri-arrow-right-up-line"></i></a>                
+                </div>
+            </div>
+        `;
+
+        jobContainer.innerHTML += jobHTML;
+    });
+    applyDescriptionTruncation();
+}
+
+
+function applyDescriptionTruncation() {
+    document.querySelectorAll('.post_description').forEach(description => {
+        const htmlContent = description.innerHTML.trim(); 
+        const textContent = description.textContent.trim(); 
+
+        if (textContent.length > 280) {
+            const fullText = htmlContent; 
+            const shortText = textContent.slice(0, 280) + '...';
+
+            description.innerHTML = `
+                <span class="short_description">${shortText}</span>
+                <span class="full_description" style="display:none;">${fullText}</span>
+                <span class="read-more cursor-pointer text-blue-500">Read more</span>
+                <span class="read-less cursor-pointer text-blue-500" style="display:none;">Show Less</span>
+            `;
+
+            description.querySelector('.read-more').addEventListener('click', () => {
+                description.querySelector('.short_description').style.display = 'none';
+                description.querySelector('.full_description').style.display = 'block';
+                description.querySelector('.read-more').style.display = 'none';
+                description.querySelector('.read-less').style.display = 'inline';
+            });
+
+            description.querySelector('.read-less').addEventListener('click', () => {
+                description.querySelector('.short_description').style.display = 'inline';
+                description.querySelector('.full_description').style.display = 'none';
+                description.querySelector('.read-more').style.display = 'inline';
+                description.querySelector('.read-less').style.display = 'none';
+            });
+        } else {
+            description.innerHTML = htmlContent; 
+        }
+    });
+}
+
+//for Bookmark
+function toggleBookmark(element) {
+    if (element.classList.contains('ri-bookmark-line')) {
+        element.classList.remove('ri-bookmark-line');
+        element.classList.add("ri-bookmark-fill");
+        element.style.color = '#695CFE';
+    } else {
+        element.classList.remove('ri-bookmark-fill');
+        element.classList.add('ri-bookmark-line');
+        element.style.color = '';
+    }
+}
+
+    </script>
+
+{% endblock %}

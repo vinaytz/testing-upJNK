@@ -1,0 +1,80 @@
+{% extends 'BaseDashboard.html' %}
+{% block title %}
+    Submit Your Application
+{% endblock %}
+{% block content %}
+
+<div class="p-4 sm:p-8 -full">
+
+    <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Please Review Your Application</h2>
+
+    <div class="flex flex-col items-center sm:flex-row gap-6 w-full items-stretch">
+        <div class="contact_details w-full sm:w-1/2 flex flex-col">
+            <div class="font-semibold pb-2 flex justify-between items-center">
+                <div class="flex items-center"><i class="ri-contacts-line pr-2 text-lg"></i> Contact Information</div>
+                <a href="#" class="text-blue-600 font-semibold hover:underline">Edit <i class="ri-arrow-right-up-line"></i></a>
+            </div>
+            <div class="border rounded-lg p-6 shadow-md flex-grow bg-white">
+                <div class="space-y-4">
+                    <div class="border-b pb-2">
+                        <h3 class="text-gray-700 font-semibold">Full Name</h3>
+                        <p class="text-gray-900"><i class="ri-user-line pr-1"></i> VINAY TIWARI</p>
+                    </div>
+                    <div class="border-b pb-2">
+                        <h3 class="text-gray-700 font-semibold">Email Address</h3>
+                        <p class="text-gray-900 max-w-xs break-all"><i class="ri-mail-line pr-1"></i> kishankkumar252525@gmail.com</p>
+                        <p class="text-xs text-gray-500 pl-6">
+                            The employer will contact you through your phone number. Email is for secondary contact.
+                        </p>
+                    </div>
+                    <div class="border-b pb-2">
+                        <h3 class="text-gray-700 font-semibold">City, State</h3>
+                        <p class="text-gray-900"><i class="ri-map-pin-line pr-1"></i> Jalandhar, Punjab</p>
+                    </div>
+                    <div class="border-b pb-2">
+                        <h3 class="text-gray-700 font-semibold">Phone Number</h3>
+                        <p class="text-gray-900"><i class="ri-phone-line pr-1"></i> +91 73071 57500</p>
+                    </div>
+                    <div class="border-b pb-2">
+                        <h3 class="text-gray-700 font-semibold">Education Qualification</h3>
+                        <p class="text-gray-900"><i class="ri-graduation-cap-line pr-1"></i> Graduation (B-Tech)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="contact_details w-full sm:w-1/2 flex flex-col">
+            <div class="font-semibold pb-2 flex justify-between items-center">
+                <div class="flex items-center"><i class="ri-award-line pr-2 text-lg"></i> Job Details</div>
+            </div>
+            <div class="border rounded-lg p-6 shadow-md flex-grow bg-white">
+                <div class="space-y-4">
+                    <div class="border-b pb-2">
+                        <h3 class="text-gray-700 font-semibold">Designation</h3>
+                        <p class="text-gray-900">Software Engineer</p>
+                    </div>
+                    <div class="border-b pb-2">
+                        <h3 class="text-gray-700 font-semibold">Job Location</h3>
+                        <p class="text-gray-900">Jalandhar, Punjab</p>
+                    </div>
+                    <div class="border-b pb-2">
+                        <h3 class="text-gray-700 font-semibold">Salary per Month</h3>
+                        <p class="text-gray-900">₹25,000</p>
+                    </div>
+                    <div class="border-b pb-2">
+                        <h3 class="text-gray-700 font-semibold">Registration Fees</h3>
+                        <p class="text-gray-900">₹500</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="flex justify-center mt-6">
+        <button class="bg-green-600 text-white font-semibold px-8 py-3 rounded-lg shadow-lg hover:bg-green-700 transition duration-200 flex items-center">
+            Submit Your Application <i class="ri-arrow-right-up-line ml-2"></i>
+        </button>
+    </div>       
+</div>
+
+{% endblock %}

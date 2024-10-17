@@ -1,0 +1,162 @@
+{% extends 'AdminBaseDashboard.html' %}
+{% block content %}
+
+
+<script>
+  const createJob = async (event) => {
+      event.preventDefault();
+      const form = event.target;
+
+      const data = {
+          "city": form.city.value, 
+          "description": form.description.value,
+          "designation": form.designation.value,
+          "edu_qualification": form.edu_qualification.value,
+          "experience": form.experience.value,
+          "no_of_posts": form.no_of_posts.value,
+          "pincode": form.pincode.value,
+          "salary": form.salary.value,
+          "skills_required": form.skills_required.value,
+          "tenure": form.tenure.value
+      };
+
+      try {
+          const response = await fetch("http://127.0.0.1:6969/api/jobs", {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(data)
+          });
+
+          if (!response.ok) {
+              throw new Error('Network response is not okay!');
+          }
+          const result = await response.json();
+          let jobs = result.jobs || [];
+          renderJobs(jobs);
+      } catch (error) {
+          console.error('Fetch error:', error);
+      }
+  };
+</script>
+
+<div class="p-2:p-6 min-h-screen flex flex-col items-center justify-center">
+    <div class="w-full max-w-5xl bg-white shadow-xl rounded-lg overflow-hidden">
+
+      <div class="bg-gradient-to-r from-indigo-600 to-blue-500 p-6 text-white flex items-center justify-between">
+        <div>
+          <h2 class="text-4xl font-bold">Create New Job Post</h2>
+          <p class="mt-2 text-lg">Fill in the details to create a new job post.</p>
+        </div>
+        <img src="{{ url_for('static', filename='jobCreateill.svg') }}" class="h-0 sm:h-48 w-auto rounded-lg shadow-lg">
+      </div>
+      <form method="POST" class="p-4 pt-8 md:p-10 space-y-8" onsubmit="createJob(event)">
+
+        <div class="text-gray-700">
+          <h3 class="text-xl font-semibold border-b pb-2">Job Information</h3>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="relative">
+            <label for="designation" class="block text-lg font-medium text-gray-800 mb-2">Designation</label>
+            <div class="absolute inset-y-0 left-0 top-[36px] pl-3 flex items-center pointer-events-none">
+              <i class="ri-briefcase-line text-gray-400"></i>
+            </div>
+            <input type="text" id="designation" name="designation" class="pl-10 w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 placeholder-gray-500" placeholder="e.g., Data Scientist" required>
+          </div>
+
+          <div class="relative">
+            <label for="no_of_posts" class="block text-lg font-medium text-gray-800 mb-2">No. of Vacancy</label>
+            <div class="absolute inset-y-0 left-0 top-[36px] pl-3 flex items-center pointer-events-none">
+              <i class="ri-list-ordered text-gray-400"></i>
+            </div>
+            <input type="number" id="no_of_posts" name="no_of_posts" class="pl-10 w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 placeholder-gray-500" placeholder="e.g., 20" required>
+          </div>
+        </div>
+
+        <div class="text-gray-700">
+          <h3 class="text-xl font-semibold border-b pb-2">Job Details</h3>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="relative">
+            <label for="city" class="block text-lg font-medium text-gray-800 mb-2">City</label>
+            <div class="absolute inset-y-0 left-0 top-[36px] pl-3 flex items-center pointer-events-none">
+              <i class="ri-map-pin-line text-gray-400"></i>
+            </div>
+            <input type="text" id="city" name="city" class="pl-10 w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 placeholder-gray-500" placeholder="e.g., Sultanpur" required>
+          </div>
+
+          <div class="relative">
+            <label for="pincode" class="block text-lg font-medium text-gray-800 mb-2">Pincode</label>
+            <div class="absolute inset-y-0 left-0 top-[36px] pl-3 flex items-center pointer-events-none">
+              <i class="ri-pushpin-line text-gray-400"></i>
+            </div>
+            <input type="text" id="pincode" name="pincode" class="pl-10 w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 placeholder-gray-500" placeholder="e.g., 228001" required>
+          </div>
+        </div>
+
+        <div class="relative">
+          <label for="description" class="block text-lg font-medium text-gray-800 mb-2">Job Description</label>
+          <div class="absolute inset-y-0 left-0 top-[41px] pl-3 pt-2 flex items-start pointer-events-none">
+            <i class="ri-file-text-line text-gray-400"></i>
+          </div>
+          <textarea id="description" name="description" class="pl-10 w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 placeholder-gray-500" rows="7" placeholder="Write the full job description" required></textarea>
+        </div>
+
+        <div class="relative">
+          <label for="skills_required" class="block text-lg font-medium text-gray-800 mb-2">Skills Required</label>
+          <div class="absolute inset-y-0 left-0 top-[41px] pl-3 pt-2 flex items-start pointer-events-none">
+            <i class="ri-tools-line text-gray-400"></i>
+          </div>
+          <textarea id="skills_required" name="skills_required" class="pl-10 w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 placeholder-gray-500" rows="2" placeholder="e.g., communication skills, Python" required></textarea>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="relative">
+            <label for="salary" class="block text-lg font-medium text-gray-800 mb-2">Salary (per month)</label>
+            <div class="absolute inset-y-0 left-0 top-[36px] pl-3 flex items-center pointer-events-none">
+              <i class="ri-money-rupee-circle-line text-gray-400"></i>
+            </div>
+            <input type="text" id="salary" name="salary" class="pl-10 w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 placeholder-gray-500" placeholder="e.g., 50000" required>
+          </div>
+
+          <div class="relative">
+            <label for="tenure" class="block text-lg font-medium text-gray-800 mb-2">Tenure</label>
+            <div class="absolute inset-y-0 left-0 top-[36px] pl-3 flex items-center pointer-events-none">
+              <i class="ri-calendar-line text-gray-400"></i>
+            </div>
+            <input type="text" id="tenure" name="tenure" class="pl-10 w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 placeholder-gray-500" placeholder="e.g., 12 months" required>
+          </div>
+
+          <div class="relative">
+            <label for="edu_qualification" class="block text-lg font-medium text-gray-800 mb-2">Educational Qualification</label>
+            <div class="absolute inset-y-0 left-0 top-[36px] pl-3 flex items-center pointer-events-none">
+              <i class="ri-graduation-cap-line text-gray-400"></i>
+            </div>
+            <input type="text" id="edu_qualification" name="edu_qualification" class="pl-10 w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 placeholder-gray-500" placeholder="e.g., M.Sc. in Data Science" required>
+          </div>
+
+          <div class="relative">
+            <label for="experience" class="block text-lg font-medium text-gray-800 mb-2">Experience (Years)</label>
+            <div class="absolute inset-y-0 left-0 top-[36px] pl-3 flex items-center pointer-events-none">
+              <i class="ri-history-line text-gray-400"></i>
+            </div>
+            <input type="number" id="experience" name="experience" class="pl-10 w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 placeholder-gray-500" placeholder="e.g., 4" required>
+          </div>
+
+          <div class="relative">
+            <label for="experience" class="block text-lg font-medium text-gray-800 mb-2">Last Date of Resistration</label>
+            <div class="absolute inset-y-0 left-0 top-[36px] pl-3 flex items-center pointer-events-none">
+              <i class="ri-calendar-line text-gray-400"></i>
+            </div>
+            <input type="date" id="experience" name="experience" class="pl-10 w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 placeholder-gray-500" placeholder="e.g., 4" required>
+          </div>
+        </div>
+
+        <div class="text-center mt-10">
+          <button type="submit" class="w-full md:w-auto px-16 py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-lg shadow-md focus:outline-none focus:ring-4 focus:ring-indigo-500">Post The Job <i class="ri-arrow-right-up-line pl-2"></i></button>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='logo.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+            .support_btn{  
+            padding: 0.5rem 1rem;
+            background-color: #2a06ff;
+       }
+
+       /* .main_cont{
+        background-color: rgb(247, 247, 247);
+       } */
+
+       .container{
+           padding: 0px 40px;
+       }
+
+       .login-box{
+        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+       }
+       
+       @media only screen and (max-width: 799px) {
+           
+           .container{
+               padding: 0px 5px;
+            }
+            
+            .top_nav_menu_btn{
+                width: 180px;
+            }
+            
+            .support_btn{
+                width: 79px;
+                height: fit-content;
+                font-size: 14px;
+                padding: 7px;
+            }
+            .main_cont{
+                background-color: transparent;
+            }
+            
+            
+            .login-box{
+             box-shadow:none;
+            }
+}
+
+
+    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <!-- <nav class="bg-blue-500 w-full h-[70px] absolute top-0 flex items-center">
+        <div class="title font-bold px-4 text-3xl text-white">UPJobYojana</div>
+    </nav> -->
+    <nav class="bg-blue-500 text-white py-1 shadow-lg w-full fixed top-0 h-fit z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center top_nav_menu_btn"> 
+                <!-- Logo -->
+                <button class="lg:hidden text-white focus:outline-none" onclick="toggleSidebar()">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                </button>
+                <img class="logo" src="{{ url_for('static', filename='logoo.png') }}" alt="UPJOBYOJANA">
+            </div>
+            <div>
+                <button class="support_btn bg-white text-blue-500 font-semibold  rounded-lg hover:bg-gray-200 transition duration-200">Support ?</button>
+              </div>
+        </div>
+    </nav>
+    <div class="main_cont flex flex-col items-center justify-center h-screen">
+        <div class="login-box w-full max-w-md bg-white p-10 mt-8 rounded-lg">
+            <h2 class="text-3xl font-bold mb-2 text-center text-gray-700">Welcome Back!</h2>
+            <p class="text-gray-500 mb-6 text-center">Please enter your credentials to access your account.</p>
+
+            <p class="text-red-500 mb-6 text-center text-lg">{{ message }}</p>
+
+            <form method="POST">
+                <div class="mb-4">
+                    <label class="block text-gray-700 font-semibold mb-2" for="email">Email</label>
+                    <input class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" type="email" id="email" name="email" placeholder="Enter your email" required>
+                </div>
+                <div class="mb-6">
+                    <label class="block text-gray-700 font-semibold mb-2" for="password">Password</label>
+                    <input class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" type="password" id="password" name="password" placeholder="Enter your password" required>
+                </div>
+                <div class="flex flex-wrap items-center justify-between mb-4">
+                    <div>
+                        <input type="checkbox" id="remember" name="remember" class="mr-2 leading-tight">
+                        <label for="remember" class="text-sm text-gray-600">Remember me</label>
+                    </div>
+                    <a class="text-sm text-blue-500 hover:underline" href="/support">Forgot Password?</a>
+                </div>
+                <button class="w-full bg-blue-500 text-white font-semibold py-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400" type="submit">
+                    Log In
+                </button>
+            </form>
+            <p class="mt-6 text-center text-sm text-gray-600">
+                Don't have an account? 
+                <a class="text-blue-500 hover:underline" href="/signup">Sign up</a>
+            </p>
+        </div>
+    </div>
+
+</body>
+</html>

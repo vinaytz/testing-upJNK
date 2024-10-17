@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Floating Button Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .content {
+            height: 1500px; /* Make the content tall enough to scroll */
+            padding: 20px;
+        }
+
+        .floating-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            opacity: 0; /* Start with opacity 0 */
+            visibility: hidden; /* Start with hidden visibility */
+            transition: opacity 0.5s ease, visibility 0s 0.5s; /* Smooth transition */
+        }
+
+        .floating-button.show {
+            opacity: 1; /* Make it fully visible */
+            visibility: visible; /* Make it visible */
+            transition: opacity 0.5s ease; /* Transition for appearing */
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h1>Scroll down to see the button!</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+        <p>More content here...</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <p>More content here...</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <p>More content here...</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <p>More content here...</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <p>More content here...</p>
+    </div>
+    <button class="floating-button" id="floatingButton">Click Me</button>
+
+    <script>
+        const button = document.getElementById('floatingButton');
+
+        window.onscroll = function() {
+            // Check if the page is scrolled down more than 20px
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                button.classList.add('show'); // Add 'show' class
+            } else {
+                button.classList.remove('show'); // Remove 'show' class
+            }
+        };
+
+
+        document.addEventListener('DOMContentLoaded', () => {
+            button.classList.remove('show');
+        });
+    </script>
+</body>
+</html>
